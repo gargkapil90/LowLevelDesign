@@ -1,4 +1,4 @@
-package TicTacToe.Modal;
+package TicTacToe.Model;
 
 import java.util.List;
 
