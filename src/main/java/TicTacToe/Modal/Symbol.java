@@ -1,4 +1,4 @@
-package TicTacToe;
+package TicTacToe.Modal;
 
 public class Symbol {
     char symbol;

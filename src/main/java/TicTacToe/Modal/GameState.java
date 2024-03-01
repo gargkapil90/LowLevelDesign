@@ -1,4 +1,4 @@
-package TicTacToe;
+package TicTacToe.Modal;
 
 public enum GameState {
     IN_PROCESS,
