@@ -6,6 +6,10 @@ public class Board {
     List<List<Cell>> cells;
     int size;
 
+    public Board(int size) {
+        this.size = size;
+    }
+
     public List<List<Cell>> getCells() {
         return cells;
     }
@@ -20,5 +24,9 @@ public class Board {
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public void printBoard(){
+
     }
 }
