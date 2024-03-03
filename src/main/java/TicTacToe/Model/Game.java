@@ -1,6 +1,6 @@
 package TicTacToe.Model;
 
-import TicTacToe.Strategy.WinningStrategy;
+import TicTacToe.Strategy.WinningStrategies.WinningStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +56,6 @@ public class Game {
         }
     }
 
-
     public List<WinningStrategy> getWinningStrategies() {
         return winningStrategies;
     }
@@ -111,5 +110,56 @@ public class Game {
 
     public void setNextPlayerIndex(int nextPlayerIndex) {
         this.nextPlayerIndex = nextPlayerIndex;
+    }
+
+    public void printBoard(){
+        board.printBoard();
+    }
+
+    public boolean validateMove(Move move){
+        Cell cell = move.getMove();
+        int row = cell.getRow();
+        int col = cell.getCol();
+        if(cell.getRow() < 0 || cell.getRow() >= board.size){
+            return false;
+        }
+        if(cell.getCol() < 0 || cell.getCol() >= board.size){
+            return false;
+        }
+        return board.getBoard().get(row).get(col).getCellState().equals(CellState.EMPTY);
+    }
+    public Move makeMove(){
+        Player currentPlayer = players.get(nextPlayerIndex);
+        System.out.println("It is " + currentPlayer.getName()+ "'s turn. Please make a move");
+        Move move = currentPlayer.makeMove(board);
+        if(!validateMove(move)){
+            System.out.println("Invalid move. Please try again!!");
+            return null;
+        }
+        int row = move.getMove().getRow();
+        int col = move.getMove().getCol();
+        Cell cellToBeUpdated = board.getBoard().get(row).get(col);
+        cellToBeUpdated.setCellState(CellState.FILLED);
+        cellToBeUpdated.setPlayer(currentPlayer);
+        move.setMove(cellToBeUpdated);
+        moves.add(new Move(cellToBeUpdated));
+        nextPlayerIndex += 1;
+        nextPlayerIndex %= players.size();
+        if(checkWinner(board, move)){
+            setGameState(GameState.WIN);
+            winner = currentPlayer;
+        }else if(moves.size() == board.getSize()*board.getSize()){
+            gameState = GameState.DRAW;
+        }
+        return move;
+    }
+
+    public boolean checkWinner(Board board, Move move){
+        for(WinningStrategy winningStrategy: winningStrategies){
+            if(winningStrategy.checkWinner(move, board)){
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -6,6 +6,13 @@ public class Cell {
     Player player;
     CellState cellState;
 
+    public Cell(int row, int col) {
+        this.row = row;
+        this.col = col;
+        this.player = null;
+        this.cellState = CellState.EMPTY;
+    }
+
     public int getRow() {
         return row;
     }
@@ -36,5 +43,13 @@ public class Cell {
 
     public void setCellState(CellState cellState) {
         this.cellState = cellState;
+    }
+
+    public void print(){
+        if(cellState.equals(CellState.EMPTY)){
+            System.out.print("| - |");
+        } else if (cellState.equals(CellState.FILLED)) {
+            System.out.print("| " + player.getSymbol().getSymbol() + " |");
+        }
     }
 }
