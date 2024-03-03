@@ -5,6 +5,11 @@ public class Symbol {
 //    String color;
 //    Image image;
 
+
+    public Symbol(char symbol) {
+        this.symbol = symbol;
+    }
+
     public char getSymbol() {
         return symbol;
     }

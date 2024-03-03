@@ -1,12 +1,10 @@
 package TicTacToe.Controller;
 
-import TicTacToe.Model.Board;
 import TicTacToe.Model.Game;
 import TicTacToe.Model.GameState;
 import TicTacToe.Model.Player;
-import TicTacToe.Strategy.WinningStrategy;
+import TicTacToe.Strategy.WinningStrategies.WinningStrategy;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameController {
@@ -22,19 +20,19 @@ public class GameController {
                 .build();
     }
     public void makeMove(Game game){
-
+        game.makeMove();
     }
 
     public void displayBoard(Game game){
-        game.getBoard().printBoard();
+        game.printBoard();
     }
 
     public Player getWinner(Game game){
-        return null;
+        return game.getWinner();
     }
 
     public GameState checkGameState(Game game){
-        return GameState.IN_PROCESS;
+        return game.getGameState();
     }
 }
 
