@@ -1,4 +1,4 @@
 package ParKing.model;
 
-public class Floor {
+public class BaseModel {
 }
