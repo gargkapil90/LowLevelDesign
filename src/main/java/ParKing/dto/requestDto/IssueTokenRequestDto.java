@@ -5,9 +5,7 @@ import ParKing.model.VehicleType;
 public class IssueTokenRequestDto {
     String vehicleNumber;
     String ownerName;
-
-    int gateId;
-
+    long gateId;
     VehicleType vehicleType;
 
     public String getVehicleNumber() {
@@ -26,7 +24,7 @@ public class IssueTokenRequestDto {
         this.ownerName = ownerName;
     }
 
-    public int getGateId() {
+    public long getGateId() {
         return gateId;
     }
 
