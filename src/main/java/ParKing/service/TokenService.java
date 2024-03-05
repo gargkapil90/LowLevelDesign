@@ -51,6 +51,7 @@ public class TokenService {
         }else{
             vehicle = vehicleOptional.get();
         }
+
         tokenObj.setVehicle(vehicle);
         SlotAssignmentStrategyType slotAssignmentStrategyType = parkingLotRepository
                 .getParkingLotByGateId(gateId)
